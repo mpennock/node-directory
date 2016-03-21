@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 // get directory page
 router.get('/directory', function(req, res, next) {
 	// show the directory view
-	res.render('directory');
+	res.render('directory', { title: 'Directory' });
 });
 
 module.exports = router;
