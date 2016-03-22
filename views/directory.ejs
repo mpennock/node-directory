@@ -2,5 +2,12 @@
 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    
+
+    <ul class="list-group">
+    <% for (var i = 0; i < directory.length; i++) { %>
+    	<li class="list-group-item">
+    		<%= directory[i].name %>
+    	</li>
+    <% } %>
+    </ul>
 <%- include partials/footer.ejs %>

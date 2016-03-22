@@ -5,10 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// add mongoose
+var mongoose = require('mongoose');
+
+// page routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var directory = require('./routes/directory');
 var app = express();
+
+// database connection
+var db = mongoose.connection;
+
+// if we get an error message, show it in the console
+db.on('error', console.error.bind(console, 'DB Error: '));
+
+// if our connection is open, send a success message to the console
+db.once('open', function(callback) {
+  console.log('Connected to mongodb');
+});
+
+// read database connection srting from the config file
+var configDb = require('./config/db.js');
+mongoose.connect(configDb.url);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +41,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// map requests to their appropriate pages
 app.use('/', routes);
 app.use('/users', users);
+app.use('/directory', directory);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

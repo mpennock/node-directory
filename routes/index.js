@@ -6,11 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
-// get directory page
-router.get('/directory', function(req, res, next) {
-	// show the directory view
-	res.render('directory', { title: 'Directory' });
-});
-
 module.exports = router;
