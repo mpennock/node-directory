@@ -14,6 +14,10 @@ var users = require('./routes/users');
 var directory = require('./routes/directory');
 var app = express();
 
+// read database connection srting from the config file
+var configDb = require('./config/db.js');
+mongoose.connect(configDb.url);
+
 // database connection
 var db = mongoose.connection;
 
@@ -25,9 +29,7 @@ db.once('open', function(callback) {
   console.log('Connected to mongodb');
 });
 
-// read database connection srting from the config file
-var configDb = require('./config/db.js');
-mongoose.connect(configDb.url);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,0 +1,33 @@
+<%- include partials/header.ejs %>
+
+<main class="container">
+
+	<form method="post" action="add">
+		<fieldset>
+			<label for="name" class="col-sm-2">Company Name:</label>
+			<input type="text" name="name" id="name" required>
+		</fieldset>
+		<fieldset>
+			<label for="category" class="col-sm-2">Category:</label>
+			<input type="text" name="category" id="category" required>
+		</fieldset>
+		<fieldset>
+			<label for="description" class="sol-sm-2">Descrition:</label>
+			<textarea name="description" id="description" cols="30" rows="10"></textarea>
+		</fieldset>
+		<fieldset>
+			<label for="phone" class="col-sm-2">Phone:</label>
+			<input type="tel" name="phone" id="phone">
+
+			<label for="email" class="col-sm-2">Email:</label>
+			<input type="email" name="email" id="email">
+
+			<label for="website" class="col-sm-2">Website:</label>
+			<input type="url" name="website" id="website">
+		</fieldset>
+		<button class="btn btn-primary col-sm-offset-2">Submit</button>
+
+	</form>	
+</main>
+    
+<%- include partials/footer.ejs %>
