@@ -46,7 +46,25 @@ router.post('/add', function(req, res) {
 });
 
 // get handler for edit page 
-router.get('')
+router.get('/:id', function(req, res, next) {
+	// variable for id to store the id from the url
+	var id = req.params.id;
+
+	// get selected business from database
+	Business.findById(id, function(err, directory) {
+		if (err) {
+			console.log(err);
+			res.end(err);
+		}
+		else {
+			// show the edit view
+			res.render('edit', {
+				title: 'edit',
+				directory: directory
+			});
+		}
+	});
+});
 
 
 // make it public

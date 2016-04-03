@@ -29,10 +29,5 @@ router.get('/add', function(req, res) {
 	res.render('add', { title: 'add' });
 }); 
 
-
-// get handler for edit page 
-router.get('')
-
-
 // make it public
 module.exports = router;

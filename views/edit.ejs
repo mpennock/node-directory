@@ -1,0 +1,37 @@
+<%- include partials/header.ejs %>
+
+<main class="container">
+
+	<form method="post" action="add">
+		<fieldset>
+			<label for="name" class="col-sm-2">Company Name:</label>
+			<input type="text" name="name" id="name" required value="<%= directory.name %>">
+		</fieldset>
+		<fieldset>
+			<label for="category" class="col-sm-2">Category:</label>
+			<input type="text" name="category" id="category" required value="<%= directory.category %>">
+		</fieldset>
+		<fieldset>
+			<label for="description" class="sol-sm-2">Description:</label>
+			<textarea name="description" id="description" cols="30" rows="10"><%= directory.description %></textarea>
+		</fieldset>
+		<fieldset>
+		<div>
+			<label for="phone" class="col-sm-2">Phone:</label>
+			<input type="tel" name="phone" id="phone" value="<%= directory.phone %>">
+		</div>
+		<div>
+			<label for="email" class="col-sm-2">Email:</label>
+			<input type="email" name="email" id="email" value="<%= directory.email %>">
+		</div>
+		<div>
+			<label for="website" class="col-sm-2">Website:</label>
+			<input type="url" name="website" id="website" value="<%= directory.website %>">
+		</div>
+		</fieldset>
+		<button class="btn btn-primary col-sm-offset-2">Submit</button>
+
+	</form>	
+</main>
+    
+<%- include partials/footer.ejs %>
