@@ -23,8 +23,8 @@
 				<td><%= directory[i].phone %></td>
 				<td><%= directory[i].email %></td>
 				<td><a href="<%= directory[i].website %>"><%= directory[i].website %></a></td>
-				<td><a href="/directory/<%= directory[i]._id %>">Edit</a></td>
-				<td><a href="/directory/<%= directory[i]._id %>">Delete</a></td>
+				<td><a href="/directory/<%= directory[i]._id %>"><button class="btn btn-primary" type="button">Edit</button></a></td>
+				<td><a href="/directory/delete/<%= directory[i]._id %>"><button class="btn btn-danger" type="button">Delete</button></a></td>
 			</tr>
 
 	<% } %> <!-- end rows loop -->

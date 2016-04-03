@@ -96,5 +96,20 @@ router.post('/:id', function(req, res) {
 	});
 });
 
+// get handler for delete
+router.get('/delete/:id', function(req, res, next) {
+	// get business id from the url
+	var id = req.params.id;
+
+	Business.remove({ _id: id }, function(err) {
+		if (err) {
+			console.log(err);
+			res.end(err);
+		}
+		else {
+			res.redirect('/master-directory');
+		}
+	});
+});
 // make it public
 module.exports = router;
