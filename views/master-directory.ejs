@@ -1,5 +1,4 @@
 <%- include partials/header.ejs %>
-
     <h1>Barrie Business Directory</h1>
     <p>Welcome to the Barrie Business directory. Here you can browse our listings for just about any business you are looking for.</p>
 
@@ -24,6 +23,8 @@
 				<td><%= directory[i].phone %></td>
 				<td><%= directory[i].email %></td>
 				<td><a href="<%= directory[i].website %>"><%= directory[i].website %></a></td>
+				<td><a href="/directory/<%= directory[i]._id %>">Edit</a></td>
+				<td><a href="/directory/<%= directory[i]._id %>">Delete</a></td>
 			</tr>
 
 	<% } %> <!-- end rows loop -->

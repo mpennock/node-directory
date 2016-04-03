@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var directory = require('./routes/directory');
+var masterDirectory = require('./routes/master-directory');
 var app = express();
 
 // read database connection srting from the config file
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/directory', directory);
+app.use('/master-directory', masterDirectory);
 
 
 // catch 404 and forward to error handler

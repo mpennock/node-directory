@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 		}
 		else {
 			console.log('fygfygfy', directory);
-			res.render('directory', {
+			res.render('master-directory', {
 				title: 'Directory',
 				directory: directory
 			});			
@@ -29,21 +29,6 @@ router.get('/add', function(req, res) {
 	res.render('add', { title: 'add' });
 }); 
 
-// post handler for new business additions from add form
-router.post('/add', function(req, res) {
-	Business.create( {
-		name: req.body.name,
-		category: req.body.category,
-		description: req.body.description,
-		phone: req.body.phone,
-		email: req.body.email,
-		website: req.body.website
-		}
-	);
-
-	// redirect to business directory
-	res.redirect('/directory');
-});
 
 // get handler for edit page 
 router.get('')
