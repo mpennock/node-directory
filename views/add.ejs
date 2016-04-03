@@ -1,7 +1,7 @@
 <%- include partials/header.ejs %>
 
 <main class="container">
-
+	<h1>Add a new business to the directory</h1>
 	<form method="post" action="add">
 		<fieldset>
 			<label for="name" class="col-sm-2">Company Name:</label>
@@ -13,7 +13,9 @@
 		</fieldset>
 		<fieldset>
 			<label for="description" class="sol-sm-2">Description:</label>
-			<textarea name="description" id="description" cols="30" rows="10"></textarea>
+			<div>
+				<textarea name="description" id="description" cols="30" rows="10"></textarea>
+			</div>
 		</fieldset>
 		<fieldset>
 		<div>

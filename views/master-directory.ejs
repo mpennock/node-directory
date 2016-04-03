@@ -1,7 +1,7 @@
 <%- include partials/header.ejs %>
     <h1>Barrie Business Directory</h1>
     <p>Welcome to the Barrie Business directory. Here you can browse our listings for just about any business you are looking for.</p>
-
+	<a href="directory/add"><button class="btn btn-success">Add a New Business</button></a>
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -24,7 +24,7 @@
 				<td><%= directory[i].email %></td>
 				<td><a href="<%= directory[i].website %>"><%= directory[i].website %></a></td>
 				<td><a href="/directory/<%= directory[i]._id %>"><button class="btn btn-primary" type="button">Edit</button></a></td>
-				<td><a href="/directory/delete/<%= directory[i]._id %>"><button class="btn btn-danger" type="button">Delete</button></a></td>
+				<td><a href="/directory/delete/<%= directory[i]._id %>"><button class="btn btn-danger confirm" type="button">Delete</button></a></td>
 			</tr>
 
 	<% } %> <!-- end rows loop -->

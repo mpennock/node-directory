@@ -42,7 +42,7 @@ router.post('/add', function(req, res) {
 	);
 
 	// redirect to business directory
-	res.redirect('/directory');
+	res.redirect('/master-directory');
 });
 
 // get handler for edit page 

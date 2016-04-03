@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 		else {
 			console.log('fygfygfy', directory);
 			res.render('master-directory', {
-				title: 'Directory',
+				title: 'Master directory',
 				directory: directory
 			});			
 		}
