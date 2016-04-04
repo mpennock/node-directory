@@ -8,12 +8,19 @@ var bodyParser = require('body-parser');
 // add mongoose
 var mongoose = require('mongoose');
 
+// authentication packages
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
+var localStrategy = require('passport-local').Strategy;
+
 // page routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var directory = require('./routes/directory');
 var masterDirectory = require('./routes/master-directory');
 var app = express();
+var auth = require('./routes/auth');
 
 // read database connection srting from the config file
 var configDb = require('./config/db.js');
@@ -50,6 +57,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/directory', directory);
 app.use('/master-directory', masterDirectory);
+app.use('/auth', auth);
 
 
 // catch 404 and forward to error handler

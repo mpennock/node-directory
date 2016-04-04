@@ -1,0 +1,23 @@
+<%- include ../partials/header.ejs %>
+
+<main class="container">
+	<h1>Register</h1>
+	<form method="post" action="auth/register">
+		<div>
+			<label for="username">Username:</label>
+			<input type="text" name="username" id="username" required >
+		</div>
+		<div>
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" required >
+		</div>
+		<div>
+			<label for="confirm">Confirm:</label>
+			<input type="password" name="confirm" id="confirm" required >
+		</div>
+		<button class="btn btn-primary">Register</button>
+	</form>
+	<p>Already have an account? <a href="/auth/login">Login</a></p>
+</main>
+
+<%- include ../partials/footer.ejs %>
