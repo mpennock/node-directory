@@ -25,12 +25,12 @@ router.get('/', function(req, res, next) {
 });
 
 // get router for add page
-router.get('/add', function(req, res) {
+router.get('/add', isLoggedIn, function(req, res) {
 	res.render('add', { title: 'add' });
 }); 
 
 // post handler for new business additions from add form
-router.post('/add', function(req, res) {
+router.post('/add', isLoggedIn, function(req, res) {
 	Business.create( {
 		name: req.body.name,
 		category: req.body.category,
@@ -111,5 +111,16 @@ router.get('/delete/:id', function(req, res, next) {
 		}
 	});
 });
+
+// authentication check
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	else {
+		res.redirect('/auth/login');
+	}
+}
+
 // make it public
 module.exports = router;

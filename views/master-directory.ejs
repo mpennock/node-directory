@@ -1,41 +1,37 @@
 <%- include partials/header.ejs %>
+<main class="container">
     <h1>Barrie Business Directory</h1>
     <p>Welcome to the Barrie Business directory. Here you can browse our listings for just about any business you are looking for.</p>
 	<a href="directory/add"><button class="btn btn-success">Add a New Business</button></a>
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th>Business Name</th>
-			<th>Category</th>
-			<th>Description</th>
-			<th>Phone</th>
-			<th>Email</th>
-			<th>Website</th>
-		</tr>
-	</thead>
-	<tbody>
-		<!-- start table row loop -->
-		<% for (var i = 0; i < directory.length; i++) { %>
-			<tr>
-				<td><%= directory[i].name %></td>
-				<td><%= directory[i].category %></td>
-				<td><%= directory[i].description %></td>
-				<td><%= directory[i].phone %></td>
-				<td><%= directory[i].email %></td>
-				<td><a href="<%= directory[i].website %>"><%= directory[i].website %></a></td>
-				<td><a href="/directory/<%= directory[i]._id %>"><button class="btn btn-primary" type="button">Edit</button></a></td>
-				<td><a href="/directory/delete/<%= directory[i]._id %>"><button class="btn btn-danger confirm" type="button">Delete</button></a></td>
-			</tr>
+	<div class="table-container">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Business Name</th>
+					<th>Category</th>
+					<th>Description</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Website</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- start table row loop -->
+				<% for (var i = 0; i < directory.length; i++) { %>
+					<tr>
+						<td><%= directory[i].name %></td>
+						<td><%= directory[i].category %></td>
+						<td><%= directory[i].description %></td>
+						<td><%= directory[i].phone %></td>
+						<td><%= directory[i].email %></td>
+						<td><a href="<%= directory[i].website %>"><%= directory[i].website %></a></td>
+						<td><a href="/directory/<%= directory[i]._id %>"><button class="btn btn-primary" type="button">Edit</button></a></td>
+						<td><a href="/directory/delete/<%= directory[i]._id %>"><button class="btn btn-danger confirm" type="button">Delete</button></a></td>
+					</tr>
 
-	<% } %> <!-- end rows loop -->
-	</tbody>
-</table>
-<!-- list output for testing our loop and connectivity -->
-<!--     <ul class="list-group">
-    <% for (var i = 0; i < directory.length; i++) { %>
-    	<li class="list-group-item">
-    		<%= directory[i].name %>
-    	</li>
-    <% } %>
-    </ul> -->
+			<% } %> <!-- end rows loop -->
+			</tbody>
+		</table>
+	</div>
+</main>
 <%- include partials/footer.ejs %>

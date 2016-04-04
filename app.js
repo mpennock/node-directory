@@ -51,6 +51,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// enable flash for showing messages
+app.use(flash());
+
+// passport config stuff
+app.use(session({
+  secret: 'Dmitri Fyodorovich Karamazov',
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// use account model
+var Account = require('./models/account');
+passport.use(Account.createStrategy());
+
+// methods for accessing session data
+passport.serializeUser(Account.serializeUser);
+passport.deserializeUser(Account.deserializeUser);
 
 // map requests to their appropriate pages
 app.use('/', routes);
