@@ -43,11 +43,18 @@ router.get('/login', function(req, res, next) {
 
 // post handler for login
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/directory',
+    successRedirect: '/master-directory',
     failureRedirect: '/auth/login',
     failureMessage: 'Invalid Login'
 
 }));
+
+// get handler for logout
+router.get('/logout', function (req, res, next) {
+	req.session.destroy();
+	res.redirect('/')
+});
+
 // authentication check
 function isLoggedIn(req, res, next) {
 

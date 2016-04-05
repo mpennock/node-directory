@@ -4,27 +4,39 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-// add mongoose
 var mongoose = require('mongoose');
-
+var dbUrl = require('./config/db.js').url;
 // authentication packages
-var passport = require('passport');
 var session = require('express-session');
-var flash = require('connect-flash');
-var localStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+// var User = require('./models/user');
+var Account = require('./models/account');
 
 // page routes
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var directory = require('./routes/directory');
+var auth = require('./routes/auth');
 var masterDirectory = require('./routes/master-directory');
 var app = express();
-var auth = require('./routes/auth');
+
+// passport config stuff
+app.use(session({
+  secret: 'DmitriFyodorovichKaramazov',
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// use account model
+// passport.use(Account.createStrategy());
+passport.use(Account.createStrategy());
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 // read database connection srting from the config file
-var configDb = require('./config/db.js');
-mongoose.connect(configDb.url);
+mongoose.connect(dbUrl);
 
 // database connection
 var db = mongoose.connection;
@@ -36,8 +48,6 @@ db.on('error', console.error.bind(console, 'DB Error: '));
 db.once('open', function(callback) {
   console.log('Connected to mongodb');
 });
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,29 +62,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // enable flash for showing messages
-app.use(flash());
-
-// passport config stuff
-app.use(session({
-  secret: 'Dmitri Fyodorovich Karamazov',
-  resave: true,
-  saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// use account model
-var Account = require('./models/account');
-passport.use(Account.createStrategy());
-
-// methods for accessing session data
-passport.serializeUser(Account.serializeUser);
-passport.deserializeUser(Account.deserializeUser);
+// app.use(flash());
 
 // map requests to their appropriate pages
 app.use('/', routes);
-app.use('/users', users);
+// app.use('/users', users);
 app.use('/directory', directory);
 app.use('/master-directory', masterDirectory);
 app.use('/auth', auth);

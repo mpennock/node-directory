@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Business = require('../models/business');
 
 // get handler for businesses page
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
 	// use directory model to query businesses in the database
 	Business.find(function(err, directory) {
 		if (err) {
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 			console.log('fygfygfy', directory);
 			res.render('master-directory', {
 				title: 'Master directory',
-				directory: directory
+				directory: directory,
 			});			
 		}
 	});
@@ -29,6 +29,14 @@ router.get('/add', function(req, res) {
 	res.render('add', { title: 'add' });
 }); 
 
-
+// authentication check
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	else {
+		res.redirect('/auth/login');
+	}
+}
 // make it public
 module.exports = router;
